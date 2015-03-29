@@ -1,0 +1,13 @@
+#err bot startup script
+
+description "err bott daemon"
+author "Isaiah Belle <ibelle@hugeinc.com>"
+
+start on runlevel [2345]
+stop on runlevel [06]
+respawn
+respawn limit 10 5
+
+setuid <%= node['theorder']['app_owner'] %>
+
+exec /bin/bash -c <%= node['theorder']['garak_project_dir'] %>/manage.sh start_err_remote

@@ -1,0 +1,58 @@
+{
+  "git": {
+    "prefix": "/usr/local"
+  },
+  "python":{
+    "version": "3.4.1",
+    "install_method":"source"
+  },
+  "nginx": {
+    "init_style": "init",
+    "default_site_enabled": false,
+    "gzip": "on",
+    "client_max_body_size": "100M",
+    "source": {
+      "modules": [
+        "nginx::http_gzip_static_module",
+        "nginx::http_ssl_module"
+      ],
+      "use_existing_user": true
+    },
+    "version": "1.4.4",
+    "user":"theorder",
+    "group":"theorder"
+  },
+  "theorder": {
+    "app_owner": "theorder",
+    "app_group": "theorder",
+    "app_user_home": "/home/theorder",
+    "vhostname": "localhost"
+  },
+  "opsworks" :{
+    "deploy_user":{
+      "user":"theorder",
+      "group":"theorder"
+    },
+    "symlinks":{
+      "media":"garak/media",
+      "static":"garak/static",
+      "logs":"garak/logs"
+    }
+  }
+,
+  "deploy":{
+    "garak":{
+      "deploy_to":"/srv/www/garak",
+      "migrate":false,
+      "keep_releases":2,
+      "purge_before_symlink":[],
+      "symlinks":{
+        "media":"media",
+        "static":"static",
+        "logs":"logs"
+      },
+      "restart_command":"sudo initctl stop errbot && sudo initctl start errbot",
+      "create_dirs_before_symlink":["tmp" ,"public"]
+    }
+  }
+}
