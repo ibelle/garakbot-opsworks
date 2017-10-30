@@ -24,4 +24,4 @@ Installs/Configures Garak HipChat Bot and NGINX Proxy
 
 ### Who do I talk to? ###
 
-* ibelle@hugeinc.com
+* isaiah@isaiahbelle.com
